@@ -11,6 +11,7 @@ env/
 .vscode/
 *.swp
 *.swo
+.cursor/
 
 # OS
 .DS_Store
@@ -25,8 +26,26 @@ build/
 # Env / Secrets
 .env
 .env.local
+.env.production
 *.pem
 
 # Logs
 *.log
 logs/
+
+# Python
+*.pyo
+.mypy_cache/
+.pytest_cache/
+htmlcov/
+.coverage
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Uploads
+uploads/
+
+# Docker
+docker/data/
