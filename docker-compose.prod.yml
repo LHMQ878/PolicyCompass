@@ -30,8 +30,8 @@ services:
   caddy:
     image: caddy:2-alpine
     ports:
-      - "8080:80"
-      - "8443:443"
+      - "8090:80"
+      - "8453:443"
     volumes:
       - ./docker/Caddyfile.prod:/etc/caddy/Caddyfile
       - caddy_data:/data

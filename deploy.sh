@@ -114,7 +114,7 @@ else
     echo -e "${RED}✗ 前端服务健康检查失败${NC}"
 fi
 
-if curl -f http://localhost:8080 &> /dev/null; then
+if curl -f http://localhost:8090 &> /dev/null; then
     echo -e "${GREEN}✓ Caddy 代理运行正常${NC}"
 else
     echo -e "${RED}✗ Caddy 代理健康检查失败${NC}"
@@ -126,13 +126,13 @@ echo -e "${GREEN}部署完成！${NC}"
 echo "=========================================="
 echo ""
 echo "服务访问地址："
-echo "  - 主入口 (Caddy):  http://localhost:8080"
+echo "  - 主入口 (Caddy):  http://localhost:8090"
 echo "  - 前端直连:        http://localhost:3002"
 echo "  - 后端 API:        http://localhost:8001"
 echo ""
 echo "端口说明（已避免冲突）："
-echo "  - 8080:  Caddy HTTP (原 80)"
-echo "  - 8443:  Caddy HTTPS (原 443)"
+echo "  - 8090:  Caddy HTTP (原 80，避开 8080 冲突)"
+echo "  - 8453:  Caddy HTTPS (原 443)"
 echo "  - 3002:  前端服务 (原 3000)"
 echo "  - 8001:  后端 API (原 8000)"
 echo ""
@@ -144,6 +144,6 @@ echo "  查看状态:   docker-compose -f docker-compose.prod.yml ps"
 echo ""
 echo "注意事项："
 echo "  1. 请确保阿里云数据库可以从此服务器访问"
-echo "  2. 如需外网访问，请在腾讯云安全组开放 8080 端口"
+echo "  2. 如需外网访问，请在腾讯云安全组开放 8090 端口"
 echo "  3. 生产环境建议配置域名和 HTTPS"
 echo ""

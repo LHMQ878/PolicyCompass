@@ -12,8 +12,8 @@
 
 原项目端口 → 新端口（生产环境）
 
-- 80 → 8080 (Caddy HTTP)
-- 443 → 8443 (Caddy HTTPS)
+- 80 → 8090 (Caddy HTTP，避开 8080 冲突)
+- 443 → 8453 (Caddy HTTPS)
 - 3000 → 3002 (前端)
 - 8000 → 8001 (后端)
 - 5432 → 使用阿里云数据库（不占用本地端口）
@@ -71,7 +71,7 @@ curl http://localhost:8001/health
 curl http://localhost:3002
 
 # 测试 Caddy 代理
-curl http://localhost:8080
+curl http://localhost:8090
 ```
 
 ## 常用命令
@@ -121,8 +121,8 @@ docker-compose -f docker-compose.prod.yml exec backend alembic history
 
 ### 方式一：使用 Caddy 代理（推荐）
 
-1. 在腾讯云安全组开放端口 8080
-2. 访问: `http://服务器公网IP:8080`
+1. 在腾讯云安全组开放端口 8090
+2. 访问: `http://服务器公网IP:8090`
 
 ### 方式二：配置域名和 HTTPS
 
@@ -140,7 +140,7 @@ docker-compose -f docker-compose.prod.yml exec backend alembic history
 }
 ```
 
-4. 在腾讯云安全组开放 8080 和 8443 端口
+4. 在腾讯云安全组开放 8090 和 8453 端口
 5. 重启服务
 
 ## 监控和维护
