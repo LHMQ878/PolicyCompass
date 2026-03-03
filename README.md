@@ -247,3 +247,226 @@ python scripts/show_policies.py
 ## License
 
 Private - All Rights Reserved
+
+---
+
+## Git 协作规范
+
+如果你要与团队成员在 Git 中协作，请遵循以下规范：
+
+### 1. 克隆仓库
+
+```bash
+git clone https://github.com/LHMQ878/PolicyCompass.git
+cd PolicyCompass
+```
+
+### 2. 分支管理策略
+
+我们采用 **Git Flow** 简化版：
+
+- `master` - 主分支，保持稳定，只接受经过测试的代码
+- `develop` - 开发分支（如需要可创建）
+- `feature/功能名` - 功能分支
+- `fix/问题描述` - 修复分支
+
+#### 创建功能分支
+
+```bash
+# 从 master 创建新分支
+git checkout master
+git pull origin master
+git checkout -b feature/your-feature-name
+
+# 开发完成后
+git add .
+git commit -m "feat: 添加某某功能"
+git push origin feature/your-feature-name
+```
+
+### 3. Commit 消息规范
+
+使用 **Conventional Commits** 格式：
+
+```
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+```
+
+#### Type 类型
+
+- `feat`: 新功能
+- `fix`: 修复 bug
+- `docs`: 文档更新
+- `style`: 代码格式调整（不影响功能）
+- `refactor`: 重构（不是新功能也不是修复）
+- `perf`: 性能优化
+- `test`: 添加测试
+- `chore`: 构建工具或辅助工具变动
+- `ci`: CI/CD 配置修改
+
+#### 示例
+
+```bash
+# 好的 commit 消息
+git commit -m "feat(auth): 添加手机验证码登录功能"
+git commit -m "fix(api): 修复政策列表分页错误"
+git commit -m "docs: 更新 README 部署说明"
+git commit -m "refactor(frontend): 优化画像页面组件结构"
+
+# 不好的 commit 消息
+git commit -m "update"
+git commit -m "fix bug"
+git commit -m "修改了一些东西"
+```
+
+### 4. 代码提交流程
+
+```bash
+# 1. 确保在正确的分支
+git branch
+
+# 2. 拉取最新代码
+git pull origin master
+
+# 3. 查看修改
+git status
+git diff
+
+# 4. 添加文件
+git add .
+# 或选择性添加
+git add frontend/src/pages/xxx.tsx
+
+# 5. 提交（遵循 commit 规范）
+git commit -m "feat: 添加某功能"
+
+# 6. 推送到远程
+git push origin feature/your-feature-name
+```
+
+### 5. Pull Request (PR) 流程
+
+1. 在 GitHub 上创建 Pull Request
+2. PR 标题遵循 commit 规范
+3. 描述清楚：
+   - 做了什么改动
+   - 为什么要这样改
+   - 如何测试
+4. 等待 Code Review
+5. 根据反馈修改代码
+6. 合并到 master
+
+### 6. 代码冲突解决
+
+```bash
+# 拉取最新代码
+git pull origin master
+
+# 如果有冲突，手动解决冲突文件
+# 编辑器会显示冲突标记：
+# <<<<<<< HEAD
+# 你的代码
+# =======
+# 别人的代码
+# >>>>>>> master
+
+# 解决后
+git add .
+git commit -m "fix: 解决合并冲突"
+git push
+```
+
+### 7. 代码审查要点
+
+提交 PR 前自查：
+
+- [ ] 代码是否通过 lint 检查
+- [ ] 是否有 TypeScript 类型错误
+- [ ] 是否测试过功能正常
+- [ ] commit 消息是否规范
+- [ ] 是否有不必要的 console.log
+- [ ] 是否有敏感信息（密码、token）
+- [ ] 是否更新了相关文档
+
+### 8. 常用命令速查
+
+```bash
+# 查看当前分支
+git branch
+
+# 切换分支
+git checkout branch-name
+
+# 创建并切换分支
+git checkout -b new-branch
+
+# 查看提交历史
+git log --oneline
+
+# 撤销未提交的修改
+git checkout -- filename
+
+# 撤销已 add 但未 commit
+git reset HEAD filename
+
+# 查看远程仓库
+git remote -v
+
+# 同步远程分支列表
+git fetch --prune
+
+# 删除本地分支
+git branch -d branch-name
+
+# 强制删除本地分支
+git branch -D branch-name
+```
+
+### 9. 注意事项
+
+⚠️ **禁止操作**
+
+- 不要直接在 `master` 分支开发
+- 不要 force push 到 `master` 分支
+- 不要提交 `.env` 文件（包含敏感信息）
+- 不要提交 `node_modules/` 或 `__pycache__/`
+- 不要提交大文件（>10MB）
+
+✅ **推荐做法**
+
+- 每天开始工作前先 `git pull`
+- 功能开发完成后及时提交
+- commit 粒度适中，一个功能点一个 commit
+- 遇到问题及时沟通，不要闷头改
+- 定期同步 master 分支到自己的功能分支
+
+### 10. 环境配置
+
+首次克隆后需要配置：
+
+```bash
+# 后端
+cd backend
+pip install -r requirements.txt
+cp ../.env.example ../.env
+# 编辑 .env 填入配置
+
+# 前端
+cd frontend
+npm install
+
+# 数据库迁移
+cd backend
+python -m alembic upgrade head
+```
+
+### 11. 遇到问题？
+
+- 查看 [README.deploy.md](./README.deploy.md) 了解部署相关问题
+- 查看 [docs/prd.md](./docs/prd.md) 了解产品需求
+- 在 GitHub Issues 中提问
+- 联系项目负责人
