@@ -30,6 +30,10 @@ export interface Talent {
   basic_info?: Record<string, unknown>;
   education?: Record<string, unknown>;
   work_experience?: Record<string, unknown>;
+  professional_skills?: Record<string, unknown>;
+  achievements?: Record<string, unknown>;
+  talent_titles?: Record<string, unknown>;
+  social_insurance?: Record<string, unknown>;
   opc_info?: Record<string, unknown>;
   completeness_score: number;
 }
@@ -39,7 +43,10 @@ export interface Park {
   user_id: string;
   name: string;
   address?: string;
+  basic_info?: Record<string, unknown>;
   industry_focus?: Record<string, unknown>;
+  tenant_info?: Record<string, unknown>;
+  investment_needs?: Record<string, unknown>;
   opc_community_info?: Record<string, unknown>;
   completeness_score: number;
 }

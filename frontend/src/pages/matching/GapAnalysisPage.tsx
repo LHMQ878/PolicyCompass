@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 const GapAnalysisPage: React.FC = () => {
   const { policyId } = useParams<{ policyId: string }>();
+  console.log('policyId:', policyId); // TODO: 使用 policyId 加载数据
   return (
     <>
       <Breadcrumb items={[{ title: '首页' }, { title: '政策匹配' }, { title: '卡点分析' }]} />

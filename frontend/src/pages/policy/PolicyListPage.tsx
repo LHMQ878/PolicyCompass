@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Typography, Breadcrumb, Input, Tag, Table, Space, Spin, Empty } from 'antd';
+import { Card, Typography, Breadcrumb, Input, Tag, Table, Space, Empty } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { listPolicies } from '@/services/policyApi';

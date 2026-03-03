@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Typography, Result, Button } from 'antd';
+import { Card, Result, Button } from 'antd';
 import { Link } from 'react-router-dom';
 
 const ForgotPasswordPage: React.FC = () => (

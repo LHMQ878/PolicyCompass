@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 const PolicyDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  console.log('policyId:', id); // TODO: 使用 id 加载数据
   return (
     <>
       <Breadcrumb items={[{ title: '首页' }, { title: '政策库' }, { title: '政策详情' }]} />
