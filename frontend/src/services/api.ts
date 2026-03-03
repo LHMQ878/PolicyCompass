@@ -15,9 +15,7 @@ api.interceptors.request.use((config) => {
 });
 
 api.interceptors.response.use(
-  (res) => {
-    return res.data as ApiResponse<unknown>;
-  },
+  (res) => res.data as any,
   (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem('access_token');
