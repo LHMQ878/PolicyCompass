@@ -15,12 +15,6 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# 检查是否为 root 或有 sudo 权限
-if [ "$EUID" -ne 0 ] && ! sudo -n true 2>/dev/null; then 
-    echo -e "${RED}错误: 需要 root 权限或 sudo 权限${NC}"
-    exit 1
-fi
-
 # 检查 Docker 是否安装
 if ! command -v docker &> /dev/null; then
     echo -e "${RED}错误: Docker 未安装${NC}"
