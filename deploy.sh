@@ -72,14 +72,6 @@ fi
 echo -e "${YELLOW}步骤 2/6: 停止旧容器（如果存在）${NC}"
 docker-compose -f docker-compose.prod.yml down 2>/dev/null || true
 
-# 清理未使用的 Docker 资源（可选）
-read -p "是否清理未使用的 Docker 镜像和容器？(y/N): " CLEANUP
-if [ "$CLEANUP" = "y" ] || [ "$CLEANUP" = "Y" ]; then
-    echo -e "${YELLOW}清理 Docker 资源...${NC}"
-    docker system prune -f
-    echo -e "${GREEN}清理完成${NC}"
-fi
-
 # 构建镜像
 echo -e "${YELLOW}步骤 3/6: 构建 Docker 镜像${NC}"
 docker-compose -f docker-compose.prod.yml build --no-cache
